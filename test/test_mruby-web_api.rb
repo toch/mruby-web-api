@@ -6,12 +6,17 @@ class TestMrubyWebAPI < MTest::Unit::TestCase
 
   def test_root_path
     subject = API.new(@host)
-    assert_equal subject.url({}), "https://#{@host}/"
+    assert_equal subject.url({}), "https://#{@host}"
   end
 
   def test_root_path_with_prefix
     subject = API.new(@host, @prefix)
-    assert_equal subject.url({}), "https://#{@host}/#{@prefix}/"
+    assert_equal subject.url({}), "https://#{@host}/#{@prefix}"
+  end
+
+  def test_full_url_without_prefix
+    subject = API.new(@host)
+    assert_equal subject.url({test: nil}), "https://#{@host}/test"
   end
 
   def test_building_a_path_for_resource

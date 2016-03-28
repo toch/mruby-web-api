@@ -1,14 +1,17 @@
 class API
   def initialize(host, path_prefix = "", header = {})
     @host = host.dup
-    @path_prefix = path_prefix.dup
-    @path_prefix << "/" if !@path_prefix.empty? && @path_prefix[-1] != "/"
+    @path_prefix = ""
+    unless path_prefix.empty?
+      @path_prefix << "/" if path_prefix[0] != "/"
+      @path_prefix << "#{path_prefix}"
+    end
     @header = header.dup
     @http_request = HttpRequest.new()
   end
 
   def url(resources, params = nil)
-    str = "https://#{@host}/#{@path_prefix}#{to_path(resources)}#{to_query(params)}"
+    str = "https://#{@host}#{@path_prefix}#{to_path(resources)}#{to_query(params)}"
     str
   end
 
