@@ -1,4 +1,4 @@
-MRuby::Gem::Specification.new('mruby-api') do |spec|
+MRuby::Gem::Specification.new('mruby-web_api') do |spec|
   spec.license = 'MIT'
   spec.author  = 'Christophe Philemotte'
   spec.summary = 'Web API Client'
